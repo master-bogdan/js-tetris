@@ -141,7 +141,32 @@ const zTetromino = [
       currentPosition -= 1;
     }
     draw();
-  }
+    }
+
+    // Фикс бага вращения
+    function isAtRight() { 
+        return current.some(index=> (currentPosition + index + 1) % width === 0);  
+    }
+
+    function isAtLeft() {
+      return current.some(index=> (currentPosition + index) % width === 0);
+    }
+
+    function checkRotatedPosition(P) {
+        P = P || currentPosition ;
+        if ((P+1) % width < 4) {     
+        if (isAtRight()){
+            currentPosition += 1;
+            checkRotatedPosition(P); 
+            }
+        }
+        else if (P % width > 5) {
+        if (isAtLeft()) {
+            currentPosition -= 1;
+        checkRotatedPosition(P);
+        }
+        }
+    }
 
 //Функция вращать фигуру
     function rotate() {
@@ -151,6 +176,7 @@ const zTetromino = [
             currentRotation = 0;
         }
         current = theTetrominoes[random][currentRotation];
+        checkRotatedPosition();
         draw();
     }
 
