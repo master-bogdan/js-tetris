@@ -1,4 +1,4 @@
-Basic JS tetris
+:video_game: Basic JS tetris
 ========================
 Made from [FreeCodeCamp tutorial](https://www.youtube.com/watch?v=rAUn1Lom6dw&feature=emb_logo)
 ***
